@@ -130,7 +130,8 @@ jobs:
             libavif-dev \
             libsystemd-dev \
             libdrm-dev \
-            libseccomp-dev
+            libseccomp-dev \
+            bubblewrap
 
           sudo apt install -y python3-pip python3-venv
           python3 -m pip install --user gi-docgen
