@@ -55,8 +55,8 @@ jobs:
 
       - name: build libxslt
         env:
-          VERSION: v1.1.42
-          LIBXSLT: libxslt-v1.1.42
+          VERSION: v1.1.43
+          LIBXSLT: libxslt-v1.1.43
         run: |
           sudo apt update
           sudo apt install -y libxml2-dev
@@ -119,7 +119,8 @@ jobs:
             libjxl-dev \
             libhyphen-dev \
             libavif-dev \
-            libsystemd-dev
+            libsystemd-dev \
+            libdrm-dev
 
           sudo apt install -y python3-pip python3-venv
           python3 -m pip install --user gi-docgen
