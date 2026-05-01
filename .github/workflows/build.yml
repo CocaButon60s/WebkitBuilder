@@ -6,9 +6,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    env:
-      WPEWEBKIT: wpewebkit-2.52.3
-
     steps:
       - name: build libwpe
         env:
@@ -40,38 +37,14 @@ jobs:
           ninja -C build
           sudo ninja -C build install
 
-    # steps:
-    #   - uses: actions/checkout@v6
-    #   - name: fetch
-    #     run: |
-    #       # wget https://wpewebkit.org/releases/${LIBWPE}.tar.xz
-    #       wget https://wpewebkit.org/releases/${WPEBACKEND_FDO}.tar.xz
-    #       # wget https://wpewebkit.org/releases/${WPEWEBKIT}.tar.xz
+      - name: build webkit
+        env:
+          WPEWEBKIT: wpewebkit-2.52.3
+        run: |
+          wget https://wpewebkit.org/releases/${WPEWEBKIT}.tar.xz
+          tar xvf ${WPEWEBKIT}.tar.xz
 
-    #       # tar xvf ${LIBWPE}.tar.xz
-    #       tar xvf ${WPEBACKEND_FDO}.tar.xz
-    #       # tar xvf ${WPEWEBKIT}.tar.xz
-
-    #   - name: configure-libwpe
-    #     run: |
-    #       sudo apt update
-    #       sudo apt install -y libegl1-mesa-dev libgles2-mesa-dev libxkbcommon-dev
-
-    #   - name: configure-wpebackend-fdo
-    #     run: |
-    #       sudo apt update
-    #       sudo apt install -y meson ninja-build libwayland-dev libepoxy-dev
-
-    #   # - name: build libwpe
-    #   #   run: |
-    #   #     cd ${LIBWPE}
-    #   #     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
-    #   #     ninja
-    #   #     sudo ninja install
-
-    #   - name: build wpebackend-fdo
-    #     run: |
-    #       cd ${WPEBACKEND_FDO}
-    #       meson setup build
-    #       ninja -C build
-    #       sudo ninja -C build install
+          cd ${WPEWEBKIT}
+          cmake -DPORT=WPE -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
+          ninja
+          sudo ninja install
