@@ -84,6 +84,9 @@ jobs:
             libsoup-3.0-dev \
             gobject-introspection
 
+          sudo apt install -y python3-pip python3-venv
+          python3 -m pip install --user gi-docgen
+
           cd ${WPEWEBKIT}
           cmake -DPORT=WPE -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
           ninja
