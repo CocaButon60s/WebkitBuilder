@@ -55,8 +55,8 @@ jobs:
 
       - name: build libxslt
         env:
-          VERSION: v1.1.43
-          LIBXSLT: libxslt-v1.1.43
+          VERSION: v1.1.44
+          LIBXSLT: libxslt-v1.1.44
         run: |
           sudo apt update
           sudo apt install -y libxml2-dev
@@ -65,6 +65,15 @@ jobs:
           tar xvf ${LIBXSLT}.tar.gz
           cd ${LIBXSLT}
           ./autogen.sh
+          make
+          sudo make install
+          sudo ldconfig
+
+      - name: build libbacktrace
+        run: |
+          git clone https://github.com/ianlancetaylor/libbacktrace.git --depth 1
+          cd libbacktrace
+          ./configure
           make
           sudo make install
           sudo ldconfig
