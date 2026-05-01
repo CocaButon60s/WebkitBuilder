@@ -8,5 +8,21 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
-      - run: |
-          echo "Building the project..."
+      - name: fetch
+        run: |
+          wget https://wpewebkit.org/releases/libwpe-1.16.3.tar.xz
+          # wget https://wpewebkit.org/releases/wpebackend-fdo-1.16.1.tar.xz
+          # wget https://wpewebkit.org/releases/wpewebkit-2.52.3.tar.xz
+
+          tar xvf libwpe-1.16.3.tar.xz
+          # tar xvf wpebackend-fdo-1.16.1.tar.xz
+          # tar xvf wpewebkit-2.52.3.tar.xz
+
+      # - name: configure
+
+      - name: build libwpe
+        run: |
+          cd libwpe-1.16.3
+          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
+          ninja
+          sudo ninja install
