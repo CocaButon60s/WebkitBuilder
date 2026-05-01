@@ -55,7 +55,7 @@ jobs:
 
       - name: build libxslt
         env:
-          VERSION: 1.1.40
+          VERSION: v1.1.40
           LIBXSLT: libxslt-v1.1.40
         run: |
           sudo apt update
