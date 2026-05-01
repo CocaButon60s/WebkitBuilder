@@ -48,7 +48,7 @@ jobs:
           cd out
           cmake ..
           make
-          make install
+          sudo make install
 
       - name: build webkit
         env:
