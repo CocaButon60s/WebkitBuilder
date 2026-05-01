@@ -37,6 +37,16 @@ jobs:
           ninja -C build
           sudo ninja -C build install
 
+      - name: build woff2
+        run: |
+          git clone --recursive https://github.com/google/woff2.git
+          cd woff2
+          mkdir out
+          cd out
+          cmake ..
+          make
+          make install
+
       - name: build webkit
         env:
           WPEWEBKIT: wpewebkit-2.52.3
