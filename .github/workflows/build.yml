@@ -18,7 +18,9 @@ jobs:
           # tar xvf wpebackend-fdo-1.16.1.tar.xz
           # tar xvf wpewebkit-2.52.3.tar.xz
 
-      # - name: configure
+      - name: configure
+        run: |
+          sudo apt update && sudo apt upgrade -y
 
       - name: build libwpe
         run: |
