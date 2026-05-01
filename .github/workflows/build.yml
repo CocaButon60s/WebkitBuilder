@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@latest
-      - runs: |
+      - run: |
           echo "Building the project..."
