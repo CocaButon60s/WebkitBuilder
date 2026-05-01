@@ -6,17 +6,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    env:
+      LIBWPE: libwpe-1.16.3
+      WPEBACKEND_FDO: wpebackend-fdo-1.16.1
+      WPEWEBKIT: wpewebkit-2.52.3
+
     steps:
       - uses: actions/checkout@v6
       - name: fetch
         run: |
-          wget https://wpewebkit.org/releases/libwpe-1.16.3.tar.xz
-          # wget https://wpewebkit.org/releases/wpebackend-fdo-1.16.1.tar.xz
-          # wget https://wpewebkit.org/releases/wpewebkit-2.52.3.tar.xz
+          wget https://wpewebkit.org/releases/${LIBWPE}.tar.xz
+          wget https://wpewebkit.org/releases/${WPEBACKEND_FDO}.tar.xz
+          # wget https://wpewebkit.org/releases/${WPEWEBKIT}.tar.xz
 
-          tar xvf libwpe-1.16.3.tar.xz
-          # tar xvf wpebackend-fdo-1.16.1.tar.xz
-          # tar xvf wpewebkit-2.52.3.tar.xz
+          tar xvf ${LIBWPE}.tar.xz
+          tar xvf ${WPEBACKEND_FDO}.tar.xz
+          # tar xvf ${WPEWEBKIT}.tar.xz
 
       - name: configure
         run: |
@@ -25,7 +30,14 @@ jobs:
 
       - name: build libwpe
         run: |
-          cd libwpe-1.16.3
+          cd ${LIBWPE}
+          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
+          ninja
+          sudo ninja install
+
+      - name: build wpebackend-fdo
+        run: |
+          cd ${WPEBACKEND_FDO}
           cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
           ninja
           sudo ninja install
