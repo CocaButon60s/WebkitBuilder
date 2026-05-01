@@ -55,12 +55,13 @@ jobs:
 
       - name: build libxslt
         env:
-          LIBXSLT: libxslt-v1.1.45
+          VERSION: v1.1.40
+          LIBXSLT: libxslt-${VERSION}
         run: |
           sudo apt update
           sudo apt install -y libxml2-dev
 
-          wget https://gitlab.gnome.org/GNOME/libxslt/-/archive/v1.1.45/${LIBXSLT}.tar.gz
+          wget https://gitlab.gnome.org/GNOME/libxslt/-/archive/${VERSION}/${LIBXSLT}.tar.gz
           tar xvf ${LIBXSLT}.tar.gz
           cd ${LIBXSLT}
           ./autogen.sh
