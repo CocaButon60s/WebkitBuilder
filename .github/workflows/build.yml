@@ -15,11 +15,11 @@ jobs:
       - uses: actions/checkout@v6
       - name: fetch
         run: |
-          wget https://wpewebkit.org/releases/${LIBWPE}.tar.xz
+          # wget https://wpewebkit.org/releases/${LIBWPE}.tar.xz
           wget https://wpewebkit.org/releases/${WPEBACKEND_FDO}.tar.xz
           # wget https://wpewebkit.org/releases/${WPEWEBKIT}.tar.xz
 
-          tar xvf ${LIBWPE}.tar.xz
+          # tar xvf ${LIBWPE}.tar.xz
           tar xvf ${WPEBACKEND_FDO}.tar.xz
           # tar xvf ${WPEWEBKIT}.tar.xz
 
@@ -31,14 +31,14 @@ jobs:
       - name: configure-wpebackend-fdo
         run: |
           sudo apt update
-          sudo apt install -y meson ninja-build libwayland-dev
+          sudo apt install -y meson ninja-build libwayland-dev libepoxy-dev
 
-      - name: build libwpe
-        run: |
-          cd ${LIBWPE}
-          cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
-          ninja
-          sudo ninja install
+      # - name: build libwpe
+      #   run: |
+      #     cd ${LIBWPE}
+      #     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
+      #     ninja
+      #     sudo ninja install
 
       - name: build wpebackend-fdo
         run: |
