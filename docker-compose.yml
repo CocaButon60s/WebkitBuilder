@@ -1,0 +1,10 @@
+services:
+  builder:
+    build: .
+    volumes:
+      - ./share:/share
+    working_dir: /share
+    user: ubuntu
+    environment:
+      PATH: "$PATH:/home/ubuntu/.local/bin"
+    tty: true
