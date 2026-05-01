@@ -20,7 +20,7 @@ jobs:
 
       - name: configure
         run: |
-          sudo apt update && sudo apt upgrade -y
+          sudo apt update
 
       - name: build libwpe
         run: |
