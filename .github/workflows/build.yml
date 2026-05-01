@@ -131,7 +131,8 @@ jobs:
             libsystemd-dev \
             libdrm-dev \
             libseccomp-dev \
-            bubblewrap
+            bubblewrap \
+            xdg-dbus-proxy
 
           sudo apt install -y python3-pip python3-venv
           python3 -m pip install --user gi-docgen
@@ -141,3 +142,14 @@ jobs:
           ninja
           sudo ninja install
           sudo ldconfig
+
+      - name: notify
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_URL }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{\"content\": \"ビルド結果: $JOB_STATUS\nリポジトリ: $GITHUB_REPOSITORY\nワークフロー: $GITHUB_WORKFLOW\nジョブ: $GITHUB_JOB\nコミット: $GITHUB_SHA\n詳細: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"}" \
+          ${DISCORD_WEBHOOK_URL}
