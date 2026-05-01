@@ -39,6 +39,9 @@ jobs:
 
       - name: build woff2
         run: |
+          sudo apt update
+          sudo apt install -y libbrotli-dev
+
           git clone --recursive https://github.com/google/woff2.git
           cd woff2
           mkdir out
