@@ -83,7 +83,8 @@ jobs:
             libgpg-error-dev \
             libsoup-3.0-dev \
             gobject-introspection \
-            flite1-dev
+            flite1-dev \
+            libjxl-dev
 
           sudo apt install -y python3-pip python3-venv
           python3 -m pip install --user gi-docgen
