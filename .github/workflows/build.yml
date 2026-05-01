@@ -23,10 +23,15 @@ jobs:
           tar xvf ${WPEBACKEND_FDO}.tar.xz
           # tar xvf ${WPEWEBKIT}.tar.xz
 
-      - name: configure
+      - name: configure-libwpe
         run: |
           sudo apt update
           sudo apt install -y libegl1-mesa-dev libgles2-mesa-dev libxkbcommon-dev
+
+      - name: configure-wpebackend-fdo
+        run: |
+          sudo apt update
+          sudo apt install -y meson ninja-build
 
       - name: build libwpe
         run: |
