@@ -33,7 +33,7 @@ jobs:
           tar xvf ${WPEBACKEND_FDO}.tar.xz
 
           sudo apt update
-          sudo apt install -y meson ninja-build libwayland-dev libepoxy-dev
+          sudo apt install -y meson ninja-build libwayland-dev libepoxy-dev libglib2.0-dev
 
           cd ${WPEBACKEND_FDO}
           meson setup build
