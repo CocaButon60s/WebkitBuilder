@@ -84,7 +84,8 @@ jobs:
             libsoup-3.0-dev \
             gobject-introspection \
             flite1-dev \
-            libjxl-dev
+            libjxl-dev \
+            libhyphen-dev
 
           sudo apt install -y python3-pip python3-venv
           python3 -m pip install --user gi-docgen
