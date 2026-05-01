@@ -7,6 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v6
       - run: |
           echo "Building the project..."
