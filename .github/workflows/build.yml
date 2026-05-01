@@ -21,6 +21,7 @@ jobs:
       - name: configure
         run: |
           sudo apt update
+          sudo apt install -y libegl1-mesa-dev libgles2-mesa-dev
 
       - name: build libwpe
         run: |
