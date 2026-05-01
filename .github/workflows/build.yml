@@ -21,6 +21,7 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
           ninja
           sudo ninja install
+          sudo ldconfig
 
       - name: build wpebackend-fdo
         env:
@@ -36,6 +37,7 @@ jobs:
           meson setup build
           ninja -C build
           sudo ninja -C build install
+          sudo ldconfig
 
       - name: build woff2
         run: |
@@ -49,6 +51,19 @@ jobs:
           cmake ..
           make
           sudo make install
+          sudo ldconfig
+
+      - name: build libxslt
+        env:
+          LIBXSLT: libxslt-v1.1.45
+        run: |
+          wget https://gitlab.gnome.org/GNOME/libxslt/-/archive/v1.1.45/${LIBXSLT}.tar.gz
+          tar xvf ${LIBXSLT}.tar.gz
+          cd ${LIBXSLT}
+          ./autogen.sh
+          make
+          sudo make install
+          sudo ldconfig
 
       - name: build webkit
         env:
@@ -107,3 +122,4 @@ jobs:
           cmake -DPORT=WPE -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
           ninja
           sudo ninja install
+          sudo ldconfig
