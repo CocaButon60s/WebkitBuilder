@@ -78,7 +78,11 @@ jobs:
             libportal-dev \
             libportal-gtk4-dev
 
-          sudo apt install -y libgcrypt20-dev libgpg-error-dev libsoup-3.0-dev
+          sudo apt install -y \
+            libgcrypt20-dev \
+            libgpg-error-dev \
+            libsoup-3.0-dev \
+            gobject-introspection
 
           cd ${WPEWEBKIT}
           cmake -DPORT=WPE -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja
