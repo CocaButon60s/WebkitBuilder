@@ -132,7 +132,8 @@ jobs:
             libdrm-dev \
             libseccomp-dev \
             bubblewrap \
-            xdg-dbus-proxy
+            xdg-dbus-proxy \
+            gperf
 
           sudo apt install -y \
             libgstreamer1.0-dev \
